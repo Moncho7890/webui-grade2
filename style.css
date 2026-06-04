@@ -5,19 +5,27 @@
 }
 
 :root {
-  --main-color:   #78350F; /* メインの色（濃い茶色） */
-  --accent-color: #F59E0B; /* アクセントの色（オレンジ） */
-  --bg-color:     #f5ce33; /* ページ全体の背景色（クリーム色） */
-  --text-color:   #1F2937; /* 文字色（濃いグレー） */
-  --card-color:   #FFFFFF; /* カードやヘッダーの白 */
-  --muted-color:  #6B7280; /* 説明文や枠線の控えめなグレー */
+    --main-color: #78350F;
+    /* メインの色（濃い茶色） */
+    --accent-color: #F59E0B;
+    /* アクセントの色（オレンジ） */
+    --bg-color: #f5ce33;
+    /* ページ全体の背景色（クリーム色） */
+    --text-color: #1F2937;
+    /* 文字色（濃いグレー） */
+    --card-color: #FFFFFF;
+    /* カードやヘッダーの白 */
+    --muted-color: #6B7280;
+    /* 説明文や枠線の控えめなグレー */
 }
 
 body {
     background-color: var(--bg-color);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     color: var(--main-color);
 }
 
@@ -62,8 +70,10 @@ section h2 {
 /* Hero */
 #hero {
     background-image:
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), /* 黒い半透明（文字を読みやすく） */
-    url("https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1600&h=900&fit=crop&auto=format&q=80"); /* 背景写真 */
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        /* 黒い半透明（文字を読みやすく） */
+        url("https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1600&h=900&fit=crop&auto=format&q=80");
+    /* 背景写真 */
     padding: 140px 24px;
     background-size: cover;
     background-position: center;
@@ -144,4 +154,73 @@ footer {
     text-align: center;
     padding: 24px;
     margin-top: 60px;
+}
+
+/* アニメーション */
+.recommend-btn {
+    background: #6F4E37;
+    color: #fff;
+    border-radius: 8px;
+    transition: 1m;
+}
+
+.recommend-btn:hover {
+    background: #C8794B;
+    transform: scale(1.05);
+}
+
+.menu-item {
+    transition: 0.3s;
+}
+
+.menu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+nav a {
+    position: relative;
+    text-decoration: none;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 0;
+    background: #C8794B;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#hero h2,
+#hero p {
+    animation: fadeUp 1s ease;
+}
+
+@keyframes spelling-error {
+    from {transform: rotate(0deg);}
+
+    to {transform: rotate(360deg);}
+}
+.spinning{
+    display: inline-block;
+    animation: spelling-error 1s linear infinite;
 }

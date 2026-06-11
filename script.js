@@ -7,10 +7,10 @@ function reserve() {
     const result = document.getElementById('reserveResult');
     // 名前か人数が空だったら、注意メッセージを出して終了する
     if (name === '' || count === '') {
-        result.textContent = '入力してください';
+        if (result) result.textContent = '入力してください';
         return;
     } else {
-        result.textContent = `✓ ご予約ありがとうございます、${name}様。${count}名様で承りました。`;
+        if (result) result.textContent = `✓ ご予約ありがとうございます、${name}様。${count}名様で承りました。`;
     }
 }
 //===============================================
@@ -25,11 +25,11 @@ function pickRecommend() {
         '抹茶ラテ',
         'プレーンスコーン',
     ];
-    //const i = Math.floor(Math.random() *  items.length);
     const i = Math.floor(Math.random() * items.length);
-
-
-    document.getElementById('recommendResult').textContent = items[i];
+    const target = document.getElementById('recommendResult');
+    if (target) {
+        target.textContent = items[i];
+    }
 }
 // ============================================
 // テーマ変更（ボタンを押すたびに色を切り替える）
@@ -49,9 +49,10 @@ function toggleTheme() {
     const theme = themes[themeIndex];
 
     // CSS変数（--main-color など）を上書きして、ページ全体の色を変える
-    document.documentElement.style.setProperty('--main-color', theme.main);
-    document.documentElement.style.setProperty('--accent-color', theme.accent);
-    document.documentElement.style.setProperty('--bg-color', theme.bg);
+    const root = document.documentElement;
+    root.style.setProperty('--main-color', theme.main);
+    root.style.setProperty('--accent-color', theme.accent);
+    root.style.setProperty('--bg-color', theme.bg);
 }
 // ========================================
 // localStorage アクセスカウンター
@@ -68,7 +69,10 @@ function countVisit() {
     count = count + 1;
 
     localStorage.setItem('visitCount', count);
-    document.getElementById('visitCount').textContent = count;
+    const display = document.getElementById('visitCount');
+    if (display) {
+        display.textContent = count;
+    }
 }
 
 countVisit();
